@@ -1,56 +1,51 @@
-!!!
-%html{lang: "ja"}
-  %head
-    %meta{charset: "utf-8"}
-  %body
-    %div.header　グループを作成しました
-    %div.contents
-      %div.menu-contents
-        %div.user-header
-          %p.use-header__user-name na
-          %ul.user-header__user-menu
-            %li.user-header__user-menu__edit-user
-              %a.user-header__user-menu__edit-user__link{href: 'http://google.co.jp'}
-                %i.fa.fa-edit
-            %li.user-header__user-menu__new-group
-              %a.user-header__user-menu__new-group__link{href: 'http://google.co.jp'}
-                %i.fa.fa-cog
-          -#Todo機能実装後部分eachメソッドで部分テンプレート(_group.html.haml)から呼び出し
-          -#<%= render @groups %>
-        %div.group
-          %div.group-content
-            %p.group-content__group-name group1
-            %p.group-content__latest-message さようなら
-          %div.group-content
-            %p.group-content__group-name group2
-            %p.group-content__latest-message こんにちは 
-      %div.chat-contents
-        %div.main-header
-          %div.main-header__group-status
-            %div.edit-button Edit
-            %div.group-members
-              %h2.group-name group
-              %ul.member-list{}
-                %li.member-list__member aaa
-                %li.member-list__member bbb
-        -#Todo機能実装後部分eachメソッドで部分テンプレート(_message.html.haml)から呼び出し
-        -#<%= render @messages %>
-        %div.messages
-          %div.message
-            %div.message__info
-              %div.message__info__user-name aaa
-              %div.message__info__date 2019/05/02
-            %div.message__text message
-          %div.message
-            %div.message__info
-              %div.message__info__user-name aaa
-              %div.message__info__date 2019/05/02
-            %div.message__text message 
-        %div.form
-          %form.new-message{inputtype: "file", name: "upfile", id:"upfile", accept: "image/*"}
-            %div.input-box
-              %input.input-box__text{type: "text", placeholder: "Type a message", name: "message[content]"}
-              %label.image-label{for: "message_image" }
-                %i.fa.fa-picture-o
-                %input.image-label__input{type: "file", name: "message[image]", id: "message_image"}
-            %input.new-message__submit-button{value: "Send", name: "commit", type: "submit"}
+.header　グループを作成しました
+.contents
+  .menu-contents
+    .user-header
+      %p.use-header__user-name na
+      %ul.user-header__user-menu
+        %li.user-header__user-menu__edit-user
+          %a.user-header__user-menu__edit-user__link{href: 'http://google.co.jp'}
+            %i.fa.fa-edit
+        %li.user-header__user-menu__new-group
+          %a.user-header__user-menu__new-group__link{href: 'http://google.co.jp'}
+            %i.fa.fa-cog
+      -#Todo機能実装後部分eachメソッドで部分テンプレート(_group.html.haml)から呼び出し
+      -#<%= render @groups %>
+    .group
+      .group-content
+        %p.group-content__group-name group1
+        %p.group-content__latest-message さようなら
+      .group-content
+        %p.group-content__group-name group2
+        %p.group-content__latest-message こんにちは 
+  .chat-contents
+    .main-header
+      .main-header__group-status
+        .edit-button Edit
+        .group-members
+          %h2.group-name group
+          %ul.member-list{}
+            %li.member-list__member aaa
+            %li.member-list__member bbb
+    -#Todo機能実装後部分eachメソッドで部分テンプレート(_message.html.haml)から呼び出し
+    -#<%= render @messages %>
+    .messages
+      .message
+        .message__info
+          .message__info__user-name aaa
+          .message__info__date 2019/05/02
+        .message__text message
+      .message
+        .message__info
+          .message__info__user-name aaa
+          .message__info__date 2019/05/02
+        .message__text message 
+    .form
+      %form.new-message{inputtype: "file", name: "upfile", id:"upfile", accept: "image/*"}
+        .input-box
+          %input.input-box__text{type: "text", placeholder: "Type a message", name: "message[content]"}
+          %label.image-label{for: "message_image" }
+            %i.fa.fa-picture-o
+            %input.image-label__input{type: "file", name: "message[image]", id: "message_image"}
+        %input.new-message__submit-button{value: "Send", name: "commit", type: "submit"}
