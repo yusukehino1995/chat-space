@@ -4,3 +4,11 @@
  *= require font-awesome
  */
  @import "font-awesome";
+ @import "user";
+ @import "variable";
+ @import "flash";
+ @import "group";
+ //  以下部分テンプレート
+@import "side";
+@import "chatside";
+@import "form";

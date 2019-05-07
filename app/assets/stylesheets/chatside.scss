@@ -1,0 +1,64 @@
+.chat-contents{
+  @include size(100%, calc(100vw - 300px));
+  background-color: $back-white;
+  box-sizing: border-box;
+  .main-header{
+    background-color:white;
+    justify-content: space-between;
+    border-bottom: solid 1px #eeeeee;
+    height: 100px;
+    padding: 0px 40px;
+    &__group-status{
+      font-size: 20px;
+      color: #333;
+      .group-members{
+        padding-top: 35px;
+        .group-name{
+        }
+        .member-list{
+          display: flex;
+          margin-top: 15px;
+          font-size: 12px;
+          &__member{
+            display: inline-block;
+            margin-right: 5px;
+          }
+        }
+      }
+      .edit-button{
+        @include size(40px, 80px);
+        line-height: 40px;
+        color:$back-blue;
+        border: solid 1px $back-blue;
+        float: right;
+        margin-top: 28px;
+        padding: 0px 20px;
+        cursor: pointer;
+      }
+    }
+  }
+  .messages{
+    margin: 46px 40px;
+    .message{
+      padding-bottom: 40px;
+      &__info{
+        display: flex;
+        &__user-name{
+          font-size: 16px;
+          font-weight: bold;
+          color: $font-black;
+        }
+        &__date{
+          font-size: 12px;
+          color: #999999;
+          margin-left: 10px;
+        }
+      }
+    &__text{
+      font-size: 14px;
+      color: $font-black;
+      margin-top: 10px;
+      }
+    }
+  }
+}

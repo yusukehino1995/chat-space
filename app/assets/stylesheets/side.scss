@@ -1,0 +1,58 @@
+.menu-contents {
+  background-color: #2f3e51;
+  @include size(100%, 300px);
+  color: white;
+  .user-header{
+    background-color: #253141;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    color: $back-white;
+    font-weight: bold;
+    &__user-name{
+      font-size: 80px;
+    }
+    &__user-menu{
+      list-style: none;
+      display: flex;
+      color: $back-white;
+      &__edit-user
+      {
+        color: white;
+        display: inline-block;
+        float: right;
+        &__link{
+          color: white;
+        }
+      }
+      &__new-group
+      {
+        display: inline-block;
+        float: right;
+        &__link{
+          color: white;
+        }
+      }
+    }
+  }
+  .groups{
+    height: calc(100vh - 100px);
+    background-color: #2f3e51;
+    padding: 0 20px;
+    overflow: scroll;
+    .group{
+      color: inherit;
+      padding: 20px 0 40px;
+      &__name{
+        font-size: 15px;
+      }
+      &__message{
+        font-size: 11px;
+        margin-bottom: 5px;
+      }
+    }
+  } 
+}

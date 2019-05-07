@@ -1,0 +1,53 @@
+.flash-box
+.contents
+  .menu-contents
+    .user-header
+      %p.user-header__user-name
+      = current_user.name
+      %ul.user-header__user-menu
+        %li.user-header__user-menu__edit-user
+          = link_to new_group_path do
+            = fa_icon 'pencil-square-o', class: 'icon'
+        %li.user-header__user-menu__new-group
+          = link_to edit_user_path(current_user) do
+            = fa_icon 'cog', class: 'icon'
+          -# %a.user-header__user-menu__new-group__link{href: 'http://google.co.jp'}
+          -#   %i.fa.fa-cog
+    .groups
+      .group
+        - current_user.groups.each do |group|
+          = link_to group_messages_path(group) do
+            .group__name
+              = group.name
+            .group__message
+              = group.show_last_message
+  .chat-contents
+    .main-header
+      .main-header__group-status
+        .edit-button Edit
+        .group-members
+          %h2.group-name group
+          %ul.member-list{}
+            %li.member-list__member aaa
+            %li.member-list__member bbb
+    -#Todo機能実装後部分eachメソッドで部分テンプレート(_message.html.haml)から呼び出し
+    -#<%= render @messages %>
+    .messages
+      .message
+        .message__info
+          .message__info__user-name aaa
+          .message__info__date 2019/05/02
+        .message__text message
+      .message
+        .message__info
+          .message__info__user-name aaa
+          .message__info__date 2019/05/02
+        .message__text message
+    .form
+      %form.new-message{inputtype: "file", name: "upfile", id:"upfile", accept: "image/*"}
+        .input-box
+          %input.input-box__text{type: "text", placeholder: "Type a message", name: "message[content]"}
+          %label.image-label{for: "message_image" }
+            %i.fa.fa-picture-o
+            %input.image-label__input{type: "file", name: "message[image]", id: "message_image"}
+        %input.new-message__submit-button{value: "Send", name: "commit", type: "submit"}
