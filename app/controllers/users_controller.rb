@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def index
+    respond_to do |format|
+      format.html {redirect_to group_messages_path(@group), notice: 'メッセージが送信されました'}
+      format.json
+    end
   end
 
   def edit
