@@ -24,14 +24,14 @@
   .chat-contents
     .main-header
       .main-header__group-status
-        .edit-button Edit
+        .edit-button 
+          = link_to 'Edit', edit_group_path(params[:group_id])
         .group-members
-          %h2.group-name group
-          %ul.member-list{}
-            %li.member-list__member aaa
-            %li.member-list__member bbb
-    -#Todo機能実装後部分eachメソッドで部分テンプレート(_message.html.haml)から呼び出し
-    -#<%= render @messages %>
+          %h2.group-name
+            = @group.name
+          %ul.member-list
+            -@group.group_users.each do |group_user|
+              = group_user.user.name
     .messages
       = render @messages
     .form

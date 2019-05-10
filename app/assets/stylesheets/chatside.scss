@@ -28,7 +28,6 @@
       .edit-button{
         @include size(40px, 80px);
         line-height: 40px;
-        color:$back-blue;
         border: solid 1px $back-blue;
         float: right;
         margin-top: 28px;
