@@ -50,7 +50,6 @@ $(function(){
       var html = userAppendGroup(user_id, name);
       $(this).parent().remove();
       $('.chat-group-users').append(html);
-      // var html = userAddGroup(dataf-user-id, data-user-name);
     });
   });
   $(function(){
