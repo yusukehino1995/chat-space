@@ -39,10 +39,8 @@ $(function(){
       var html = buildHTML(data);
       //messagesクラスにbuildHTMLメソッドで作成したhtmlを追加
       $('.messages').append(html);
-      //入力フォームを空にする
+      //入力フォームの文字と画像を空にする
       $("#new_message")[0].reset();
-      //画像も
-      $('.hidden')[0].reset();
       //そのままだとsubmitボタンは1度しか押下できないので再度押せるように
       $('.form__submit').prop('disabled', false);
       //To fix 画面を下までスクロール
