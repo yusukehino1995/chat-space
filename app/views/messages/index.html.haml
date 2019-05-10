@@ -32,10 +32,6 @@
           %ul.member-list
             -@group.group_users.each do |group_user|
               = group_user.user.name
-            -# %li.member-list__member aaa
-            -# %li.member-list__member ccc
-    -#Todo機能実装後部分eachメソッドで部分テンプレート(_message.html.haml)から呼び出し
-    -#<%= render @messages %>
     .messages
       = render @messages
     .form
