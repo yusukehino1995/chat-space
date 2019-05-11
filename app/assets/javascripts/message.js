@@ -50,4 +50,63 @@ $(function(){
       alert('error')
     })
   })
+    //メッセージ自動更新の際に作成されるhtml
+    var buildMessageHTML = function(message) {
+      //文章と画像
+      if (message.content && message.image.url) {
+        //data-idが反映されるようにしている
+        var html = `<div class="message" data-id= "${message.id}" >
+          <div class="upper-message">
+            <div class="upper-message__user-name">
+              ${message.user_name} 
+            </div>
+            <div class="upper-message__date">
+              ${message.created_at}
+            </div>
+          </div>
+          <div class="lower-message">
+          <% if (message.content) %> 
+            <p class="lower-message__content">
+              ${message.content}
+            </p>
+          <% end %>
+          <% if (message.image.url) %> 
+            <img src= "${message.image.url}" class="lower-message__image" >
+          <% end %>
+            </div>
+        </div>`
+      };
+      return html;
+    };
+    //自動更新機能
+    var reloadMessages = function(){
+      //最新のメッセージidを取得
+      var message_id = $('.message:last').data('message-id');
+      // last_message_id = 
+      $.ajax({
+        //
+        url: location.href,
+        type: 'GET',
+        dataType: 'json',
+        data: {id: message_id}
+      })
+      .done(function(messages){
+        alert('done')
+        //追加するHTML
+        var insertHTML ='';
+        //作成したHTMLをつなぎ合わせる
+        if(messages.length !== 0){
+          messages.forEach(function(message){
+          insertHTML += buildMessageHTML(message);
+          })
+        //messagesクラスにbuildHTMLメソッドで作成したhtmlを追加
+        $('.messages').append(inserthtml);
+        }
+      })
+      .fail(function(){
+        alert('errorrrrr');
+      })
+    }
+    //5000ミリ秒(=5秒)ごとに
+    // setInterval(reloadMessages, 5000);
 })
