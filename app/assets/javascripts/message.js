@@ -53,60 +53,59 @@ $(function(){
     //メッセージ自動更新の際に作成されるhtml
     var buildMessageHTML = function(message) {
       //文章と画像
-      if (message.content && message.image.url) {
-        //data-idが反映されるようにしている
         var html = `<div class="message" data-id= "${message.id}" >
-          <div class="upper-message">
-            <div class="upper-message__user-name">
-              ${message.user_name} 
-            </div>
-            <div class="upper-message__date">
-              ${message.created_at}
-            </div>
-          </div>
-          <div class="lower-message">
-          <% if (message.content) %> 
-            <p class="lower-message__content">
-              ${message.content}
-            </p>
-          <% end %>
-          <% if (message.image.url) %> 
-            <img src= "${message.image.url}" class="lower-message__image" >
-          <% end %>
-            </div>
-        </div>`
-      };
+                      <div class="upper-message">
+                        <div class="upper-message__user-name">
+                          ${message.user_name} 
+                        </div>
+                        <div class="upper-message__date">
+                          ${message.created_at}
+                        </div>
+                      </div>
+                      <div class="lower-message">
+                        <p class="lower-message__content">
+                          ${message.content}
+                        </p>
+                        <img src= "${message.image.url}" class="lower-message__image" >
+                      </div>
+                    </div>`
       return html;
     };
     //自動更新機能
     var reloadMessages = function(){
       //最新のメッセージidを取得
-      var message_id = $('.message:last').data('message-id');
-      // last_message_id = 
+      var last_message_id =  $('.message:last').data('message-id');
+      var group_id =  $('.group-members').data('group-id');
+      // alert(group_id)
+      // alert(`/groups/${group_id}/api/messages`)
+      // alert(last_message_id)
       $.ajax({
         //
-        url: location.href,
+        url: `/groups/${group_id}/api/messages`,
         type: 'GET',
         dataType: 'json',
-        data: {id: message_id}
+        data: {id: last_message_id},
+        processData: false,
+        contentType: false
       })
       .done(function(messages){
-        alert('done')
         //追加するHTML
         var insertHTML ='';
         //作成したHTMLをつなぎ合わせる
         if(messages.length !== 0){
           messages.forEach(function(message){
-          insertHTML += buildMessageHTML(message);
+            //メッセージが入ったHTMLを追加
+          insertHTML = buildMessageHTML(message);
           })
         //messagesクラスにbuildHTMLメソッドで作成したhtmlを追加
-        $('.messages').append(inserthtml);
+        $('.messages').append(insertHTML);
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
         }
       })
       .fail(function(){
-        alert('errorrrrr');
+        alert('error');
       })
     }
     //5000ミリ秒(=5秒)ごとに
-    // setInterval(reloadMessages, 5000);
+    setInterval(reloadMessages, 5000);
 })

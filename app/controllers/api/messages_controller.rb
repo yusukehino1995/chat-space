@@ -4,7 +4,7 @@ class Api::MessagesController < ApplicationController
         # //idが送信されたメッセージよりも後に投稿されたメッセージのみ取得
     respond_to do |format|
       format.html 
-      format.json  { @new_messages = Message.where('id > ?', params[:message][:id]) }
+      format.json  { @new_messages = @messages.where('id > ?', params[:message_id]) }
     end
   end
  
