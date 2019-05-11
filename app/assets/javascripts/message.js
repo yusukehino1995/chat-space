@@ -1,4 +1,5 @@
 $(function(){
+  //非同期通信
   function buildHTML(message){
     //imageのパスをsrc属性にいれてもし存在しなければコンテンツ
     var image = message.image.url == null ? "" : `<img src="${message.image.url}" class="lower-message__image">`
@@ -43,11 +44,34 @@ $(function(){
       $("#new_message")[0].reset();
       //そのままだとsubmitボタンは1度しか押下できないので再度押せるように
       $('.form__submit').prop('disabled', false);
-      //To fix 画面を下までスクロール
+      //画面を下までスクロール
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
     })
     .fail(function(){
       alert('error')
+    });
+  });
+  //自動更新機能
+  var reloadMessages = function(){
+    //カスタムデータ属性から最新のidを取得
+    // last_message_id = 
+    $.ajax({
+      //
+      url: '/groups/:group_id/api/messges',
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
     })
-  })
-})
+    .done(function(messages){
+      //追加するHTML
+      var insertHTML ='';
+      //作成したHTMLをつなぎ合わせる
+      insertHTML += buildMessageHTML(message);
+      //messagesクラスにbuildHTMLメソッドで作成したhtmlを追加
+      $('.messages').append(inserthtml);
+    })
+    .fail(function(){
+      alert('error');
+    })
+  }
+});
