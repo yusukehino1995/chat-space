@@ -52,7 +52,13 @@ $(function(){
   })
   //メッセージ自動更新の際に作成されるhtml
   var buildMessageHTML = function(message) {
-  var message_image = message.image.url ? `<img src= "${message.image.url}" class="lower-message__image" >` : "";
+  //文章の表示有無
+  var message_content = message.content == null ? "" : `<p class="lower-message__content">` +
+                                                        `${message.content}` +
+                                                      `</p>`;
+  //画像の表示有無
+  var message_image = message.image.url == null ? "" :`<img src= "${message.image.url}" class="lower-message__image" >` ;
+  //HTMLの作成
   var html = `<div class="message" data-message-id= "${message.id}" >
                 <div class="upper-message">
                   <div class="upper-message__user-name">
@@ -63,9 +69,7 @@ $(function(){
                   </div>
                 </div>
                 <div class="lower-message">
-                  <p class="lower-message__content">
-                    ${message.content}
-                  </p>
+                  ${message_content}
                   ${message_image}
                 </div>
               </div>`
