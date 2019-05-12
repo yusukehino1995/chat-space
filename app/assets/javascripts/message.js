@@ -93,7 +93,7 @@ $(function(){
       //作成したHTMLをつなぎ合わせる
       messages.forEach(function(message){
         //メッセージが入ったHTMLを追加
-      insertHTML += buildMessageHTML(message);
+        insertHTML += buildMessageHTML(message);
       })
       //messagesクラスにbuildHTMLメソッドで作成したhtmlを追加
       $('.messages').append(insertHTML);
