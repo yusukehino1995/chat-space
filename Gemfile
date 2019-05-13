@@ -62,3 +62,6 @@ gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'pry-byebug', group: :development
+group :production do
+  gem 'unicorn', '5.4.1'
+end
