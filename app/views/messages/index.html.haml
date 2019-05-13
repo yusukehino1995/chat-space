@@ -26,7 +26,7 @@
       .main-header__group-status
         .edit-button 
           = link_to 'Edit', edit_group_path(params[:group_id])
-        .group-members
+        .group-members{data:{group_id: @group.id}}
           %h2.group-name
             = @group.name
           %ul.member-list
