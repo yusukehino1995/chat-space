@@ -1,6 +1,9 @@
 # config valid only for current version of Capistrano
 lock '3.11.0'
 
+#secte.ymlのシンボリック
+set :linked_files, %w{ config/secrets.yml }
+
 set :application, 'chat-space'
 set :repo_url,  'git@github.com:yusukehino1995/chat-space.git'
 
